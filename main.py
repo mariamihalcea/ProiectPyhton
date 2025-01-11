@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 #set up the grid
 game_grid = Grid()
 
-block = LBlock()
+block = ZBlock()
 
 # #test to check colors and grids
 # game_grid.grid[0][0]=1
