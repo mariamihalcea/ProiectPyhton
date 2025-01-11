@@ -1,2 +1,3 @@
-# ProiectPyhton
+# ProiectPython
+
 Tetris game
