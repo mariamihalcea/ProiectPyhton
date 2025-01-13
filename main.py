@@ -31,6 +31,9 @@ clock = pygame.time.Clock()
 
 game = Game()
 
+GAME_UPDATE = pygame.USEREVENT # used to create an event that will be triggered every time the block's position needs to be updated
+pygame.time.set_timer(GAME_UPDATE, 200) # 200 miliseconds
+
 while True:
     for event in pygame.event.get():
         if event. type==pygame. QUIT:
@@ -46,12 +49,15 @@ while True:
                 game.move_down()
             if event.key == pygame.K_UP:
                 game.rotate()
+        if event.type == GAME_UPDATE:
+            game.move_down()
 
     # Drawing
     screen.fill(dark_blue)
     #game_grid.draw(screen)
     #block.draw(screen)
     game.draw(screen)
+    #game.move_down()
 
     pygame.display.update()
     clock.tick(60)
