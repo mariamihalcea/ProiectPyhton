@@ -12,6 +12,7 @@ class LBlock(Block):
             2: [Position(1,0), Position(1,1), Position(1,2), Position(2,0)],
             3: [Position(0,0), Position(0,1), Position(1,1), Position(2,1)],
         }
+        self.move(0,3) # to have the blocks come down from the middle of the display
 
 # J Block
 class JBlock(Block):
@@ -24,6 +25,7 @@ class JBlock(Block):
             2: [Position(1,0), Position(1,1), Position(1,2), Position(2,2)],
             3: [Position(0,1), Position(1,1), Position(2,0), Position(2,1)],
         }
+        self.move(0,3)
 
 # I Block
 class IBlock(Block):
@@ -36,6 +38,7 @@ class IBlock(Block):
             2: [Position(2,0), Position(2,1), Position(2,2), Position(2,3)],
             3: [Position(0,1), Position(1,1), Position(2,1), Position(3,1)],
         }
+        self.move(-1,3) #eception
 
 # O Block
 class OBlock(Block):
@@ -46,6 +49,7 @@ class OBlock(Block):
             0: [Position(0,0), Position(0,1), Position(1,0), Position(1,1)],
             
         }
+        self.move(0,4) #exception
 
 # S Block
 class SBlock(Block):
@@ -58,6 +62,7 @@ class SBlock(Block):
             2: [Position(1,1), Position(1,2), Position(2,0), Position(2,1)],
             3: [Position(0,0), Position(1,0), Position(1,1), Position(2,1)],
         }
+        self.move(0,3)
 
 # T Block
 class TBlock(Block):
@@ -70,6 +75,7 @@ class TBlock(Block):
             2: [Position(1,0), Position(1,1), Position(1,2), Position(2,1)],
             3: [Position(0,1), Position(1,0), Position(1,1), Position(2,1)],
         }
+        self.move(0,3)
 
 # Z Block
 class ZBlock(Block):
@@ -82,3 +88,4 @@ class ZBlock(Block):
             2: [Position(1,0), Position(1,1), Position(2,1), Position(2,2)],
             3: [Position(0,1), Position(1,0), Position(1,1), Position(2,0)],
         }
+        self.move(0,3)

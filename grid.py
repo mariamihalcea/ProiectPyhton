@@ -14,7 +14,10 @@ class Grid:
                 print(self.grid[row][column],end = " ")  #to be able to see if the grid is ok
             print() 
 
-   
+    def is_inside(self,row,column):
+        if row >= 0 and row <self.num_rows and column >= 0  and column < self.num_cols:
+            return True
+        return False
     
     #draw metod
     def draw(self,screen):

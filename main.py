@@ -1,6 +1,7 @@
 import pygame,sys
 from grid import Grid
-from blocks import *
+#from blocks import *
+from game import Game
 
 
 pygame.init()
@@ -18,9 +19,9 @@ pygame.display.set_caption("Python Tetris")
 clock = pygame.time.Clock()
 
 #set up the grid
-game_grid = Grid()
+#game_grid = Grid()
 
-block = ZBlock()
+#block = IBlock()
 
 # #test to check colors and grids
 # game_grid.grid[0][0]=1
@@ -28,17 +29,29 @@ block = ZBlock()
 # game_grid.grid[17][8]=7
 # game_grid.print_grid()
 
+game = Game()
+
 while True:
     for event in pygame.event.get():
         if event. type==pygame. QUIT:
             pygame.quit()
             sys.exit()
-    
+        #keyboard controls
+        if event.type == pygame.KEYDOWN:  #if the player has pressed a key
+            if event.key == pygame.K_LEFT:
+                game.move_left()
+            if event.key == pygame.K_RIGHT:
+                game.move_right()
+            if event.key == pygame.K_DOWN:
+                game.move_down()
+
     # Drawing
     screen.fill(dark_blue)
-    game_grid.draw(screen)
-    block.draw(screen)
+    #game_grid.draw(screen)
+    #block.draw(screen)
+    game.draw(screen)
 
     pygame.display.update()
     clock.tick(60)
+
 
