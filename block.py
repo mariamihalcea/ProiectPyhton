@@ -26,6 +26,17 @@ class Block:
             moved_tiles.append(position)
         return moved_tiles
 
+    #rotate method
+    def rotate(self):
+        self.rotation_state += 1
+        if self.rotation_state == len(self.cells):
+            self.rotation_state = 0
+
+    def undo_rotation(self):
+        self.rotation_state -= 1
+        if self.rotation_state == 0:
+            self.rotation_state = len(self.cells)-1
+
     # draw on a surface
     def draw(self, screen):
         # retrieve positions for current state
