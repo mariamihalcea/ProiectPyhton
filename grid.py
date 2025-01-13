@@ -1,5 +1,6 @@
 import pygame
 from colors import Colors
+import random
 class Grid:
     def __init__(self):
         self.num_rows=20
@@ -64,3 +65,14 @@ class Grid:
                 cell_value = self.grid[row][column]
                 cell_rect = pygame.Rect(column *self.cell_size + 11, row*self.cell_size+11, self.cell_size-1, self.cell_size-1)
                 pygame.draw.rect(screen, self.colors[cell_value], cell_rect) # surface, color, rect
+
+    def remove_bottom_half(self):
+        half = self.num_rows // 2
+        for row in range(half, self.num_rows):
+            for col in range(self.num_cols):
+                self.grid[row][col] = 0  # Elimină partea de jos
+        
+        for row in range(half - 1, -1, -1):  # Mută partea superioară în jos
+            for col in range(self.num_cols):
+                self.grid[row + half][col] = self.grid[row][col]
+                self.grid[row][col] = 0

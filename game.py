@@ -3,6 +3,7 @@
 from grid import    Grid
 from blocks import *
 import random
+import pygame
 
 
 class Game:
@@ -13,7 +14,8 @@ class Game:
         self.next_block = self.get_random_block()
         self.game_over = False
         self.score = 0
-
+        self.lives = 3  # Adăugăm 3 vieți
+        
     def update_score(self, lines_cleared, move_down_points):
         if lines_cleared == 1:
             self.score += 100
@@ -57,8 +59,15 @@ class Game:
         rows_cleared = self.grid.clear_full_rows()
         self.update_score(rows_cleared, 0)
         # make the game end
-        if self.block_fits() == False:
-            self.game_over = True
+        #if self.block_fits() == False:
+        #    self.game_over = True
+        if not self.block_fits():
+            self.lives -= 1  # Scade o viață
+            if self.lives > 0:
+                self.grid.remove_bottom_half()  # Elimină jumătate din piese
+            else:
+                self.game_over = True
+
     
     def reset(self):
         self.grid.reset()
@@ -66,7 +75,12 @@ class Game:
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
         self.score = 0
+        self.lives = 3  # Resetează viețile
 
+    def draw_lives(self, screen, font):
+        lives_surface = font.render(f"Lives: {self.lives}", True, (255, 255, 255))
+        lives_rect = lives_surface.get_rect(center=(405, 140))  # Centrează între Score și Next
+        screen.blit(lives_surface, lives_rect)
 
     #check to see if it is on the top of an empty cell or grid
     def block_fits(self):
@@ -88,7 +102,21 @@ class Game:
             if self.grid.is_inside(tile.row, tile.column) == False:
                 return False
         return True
+
+    def draw_lives(self, screen):
+        heart_x = 350  # Poziția inițială X
+        heart_y = 130  # Poziția Y, centrată între Score și Next
+        spacing = 40  # Distanța dintre inimioare
         
+        for i in range(3):
+            color = (255, 0, 0) if i < self.lives else (255, 255, 255)  # Roșu pentru vieți rămase, alb pentru contur
+            self.draw_diamond(screen, heart_x + i * spacing, heart_y, color)
+    
+    def draw_diamond(self, screen, x, y, color):
+        size = 10
+        pygame.draw.polygon(screen, color, [(x, y - size), (x - size, y), (x, y + size), (x + size, y)])
+        pygame.draw.polygon(screen, (255, 255, 255), [(x, y - size), (x - size, y), (x, y + size), (x + size, y)], 2)
+
     #method for drawing all the objects on the screen
     def draw(self, screen):
         self.grid.draw(screen)
