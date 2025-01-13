@@ -75,15 +75,6 @@ while True:
     screen.blit(score_surface, (365, 20, 50, 50))
     screen.blit(next_surface, (375, 180, 50, 50))
 
-    score_rect = pygame.Rect(320, 55, 170, 60)
-    lives_rect = pygame.Rect(320, 135, 170, 60) 
-    lives_surface = title_font.render("Lives", True, Colors.white)
-    screen.blit(score_surface, (365, 20, 50, 50))  # Textul „Score”
-    screen.blit(lives_surface, (365, 115))  # Textul „Lives” este acum plasat sub Score
-    pygame.draw.rect(screen, Colors.light_blue, score_rect, 0, 10)  # Dreptunghi pentru Score
-    pygame.draw.rect(screen, Colors.light_blue, lives_rect, 0, 10)  # Dreptunghi pentru Lives
-
-
     if game.game_over ==   True:
         screen.blit(game_over_surface, (320, 450, 50, 50))
 
@@ -100,5 +91,3 @@ while True:
 
     pygame.display.update()
     clock.tick(60)
-
-
